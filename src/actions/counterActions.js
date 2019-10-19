@@ -1,21 +1,22 @@
+import {SET_COUNTER, CLEAR_COUNTER, INCREASE_COUNTER, DECREASE_COUNTER} from './types';
 export const counterIncrement = () => {
     return {
-        type: 'INCREMENT'
+        type: INCREASE_COUNTER
     }
 }
 export const counterDecrement = () => {
     return {
-        type: 'DECREMENT'
+        type: DECREASE_COUNTER
     }
 }
 export const counterClear = () => {
     return {
-        type: 'CLEAR'
+        type: CLEAR_COUNTER
     }
 }
 export const counterSet = (receivednumber) => {
     return {
-        type: 'SET',
+        type: SET_COUNTER,
         payload: receivednumber,
     }
 }

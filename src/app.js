@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { AppRegistry, StyleSheet, Text, TextInput, View, Button } from "react-native";
 import {connect} from 'react-redux'
-import {counterIncrement, counterDecrement, counterClear, counterSet} from './actions'
+import {counterIncrement, counterDecrement, counterClear, counterSet, helloAction} from './actions'
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class App extends Component {
   render() {
     console.log(this.props);
     const { container, countViewStyle, welcome } = styles;
+    const { helloText, pressedButton } = this.props.hello;
     return (
       <View style={container}>
           <TextInput          
@@ -34,7 +35,10 @@ class App extends Component {
           <Button onPress={this.props.counterDecrement} title="-" />
         </View>
         <Button onPress={this.props.counterClear} title="Clear" />
-      </View>
+        <Text>{helloText}</Text>
+        <Text>Did you press it? {pressedButton.toString()}</Text>
+        <Button onPress={this.props.helloAction} title="Show me something" />
+        </View>
     );
   }
 }
@@ -62,8 +66,9 @@ const styles = StyleSheet.create({
 });
 function mapStateToProps(state) {
     return{
-        count: state
+        count: state.counter,
+        hello: state.hello,
     }
 }
 
-export default connect(mapStateToProps, {counterIncrement, counterDecrement, counterClear, counterSet})(App);
+export default connect(mapStateToProps, {counterIncrement, counterDecrement, counterClear, counterSet, helloAction})(App);
